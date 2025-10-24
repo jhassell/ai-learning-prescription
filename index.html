@@ -1,119 +1,224 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Doc Hassell’s Quick AI Learning Prescription – October 2025</title>
-  <link href="https://fonts.googleapis.com/css2?family=Homemade+Apple&family=Merriweather&display=swap" rel="stylesheet">
+
+  <!-- Handwritten + serif for a medical-prescription vibe -->
+  <link href="https://fonts.googleapis.com/css2?family=Homemade+Apple&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+
   <style>
-    body {
-      background-color: #fefdfb;
-      background-image:
-        radial-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
-        linear-gradient(to bottom right, #fffef9, #f6f2e9);
-      background-size: 10px 10px, 100% 100%;
-      font-family: "Merriweather", serif;
-      color: #2a1f14;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      min-height: 100vh;
+    :root{
+      --ink:#2a1f14;
+      --accent:#1c5d99;     /* calm medical blue */
+      --line:#c9bfa8;       /* dotted rule lines */
+      --paper:#fffefb;      /* prescription pad white */
+      --edge:#d9d4c7;
     }
 
-    .pad {
-      background: #fffefb;
-      border: 2px solid #d9d4c7;
-      border-radius: 8px;
-      box-shadow: 0 6px 14px rgba(0,0,0,0.15);
-      width: 90%;
-      max-width: 640px;
-      margin: 50px 0;
-      padding: 40px 50px;
-      position: relative;
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:"Merriweather",serif;
+      color:var(--ink);
+      background:
+        radial-gradient(rgba(0,0,0,.03) 1px, transparent 1px) 0 0 / 10px 10px,
+        linear-gradient(to bottom right, #ffffff, #f7f4ec);
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;
     }
 
-    .pad::before {
-      content: "Rx";
-      position: absolute;
-      top: 15px;
-      left: 20px;
-      font-family: "Homemade Apple", cursive;
-      font-size: 42px;
-      color: rgba(123, 63, 0, 0.3);
+    .pad{
+      background:var(--paper);
+      border:2px solid var(--edge);
+      border-radius:10px;
+      width:min(720px,92vw);
+      margin:48px 0;
+      padding:44px 56px;
+      box-shadow:0 8px 20px rgba(0,0,0,.14);
+      position:relative;
+      overflow:hidden;
     }
 
-    h1 {
-      font-family: "Homemade Apple", cursive;
-      font-size: 28px;
-      color: #6b3e09;
-      text-align: center;
-      margin-top: 10px;
-      margin-bottom: 5px;
+    /* Watermark Rx */
+    .pad::before{
+      content:"Rx";
+      position:absolute;
+      top:10px; left:16px;
+      font-family:"Homemade Apple",cursive;
+      font-size:48px;
+      color:rgba(28,93,153,.12); /* faint blue watermark */
+      user-select:none;
+      pointer-events:none;
     }
 
-    h1 small {
-      display: block;
-      font-size: 14px;
-      color: #7a6a58;
-      margin-top: 4px;
-      letter-spacing: 0.5px;
+    /* Clinic header strip */
+    .header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      border-bottom:2px solid var(--edge);
+      padding-bottom:12px;
+      margin-bottom:18px;
+    }
+    .brand{
+      font-family:"Homemade Apple",cursive;
+      font-size:26px;
+      letter-spacing:.3px;
+    }
+    .meta{
+      font-size:.9rem;
+      text-align:right;
+      line-height:1.2;
+      color:#6b6b6b;
     }
 
-    ul {
-      list-style: none;
-      padding-left: 0;
-      margin-top: 35px;
-      margin-bottom: 0;
+    h1{
+      font-family:"Homemade Apple",cursive;
+      font-size:28px;
+      color:#6b3e09;
+      text-align:center;
+      margin:6px 0 2px;
+    }
+    h1 small{
+      display:block;
+      font-size:13px;
+      color:#7a6a58;
+      letter-spacing:.3px;
+      margin-top:2px;
     }
 
-    li {
-      margin-bottom: 22px;
-      border-bottom: 1px dotted #c9bfa8;
-      padding-bottom: 12px;
+    /* “Directions” label */
+    .label{
+      margin-top:28px;
+      font-weight:700;
+      font-size:.9rem;
+      color:#6b6b6b;
+      text-transform:uppercase;
+      letter-spacing:.1em;
+      border-bottom:1px solid var(--edge);
+      padding-bottom:6px;
     }
 
-    a {
-      color: #5a2a00;
-      text-decoration: none;
-      font-weight: bold;
+    /* Items look like lines on a pad */
+    .list{
+      list-style:none;
+      padding:0;
+      margin:14px 0 0;
+    }
+    .item{
+      padding:14px 0 12px;
+      border-bottom:1px dotted var(--line);
+    }
+    .item:last-child{border-bottom:0}
+
+    .item a{
+      color:var(--accent);
+      text-decoration:none;
+      font-weight:700;
+    }
+    .item a:hover{ text-decoration:underline; }
+
+    .note{
+      margin-top:18px;
+      font-size:.95rem;
+      color:#5a5248;
     }
 
-    a:hover {
-      text-decoration: underline;
+    .sig{
+      margin-top:44px;
+      display:flex;
+      justify-content:flex-end;
+      align-items:center;
+      gap:14px;
+    }
+    .sig .line{
+      flex:1;
+      border-bottom:1px solid var(--edge);
+    }
+    .sig .name{
+      font-family:"Homemade Apple",cursive;
+      font-size:22px;
+      color:#6b3e09;
+      white-space:nowrap;
     }
 
-    .signature {
-      font-family: "Homemade Apple", cursive;
-      text-align: right;
-      margin-top: 50px;
-      color: #7b3f00;
-      font-size: 22px;
+    /* Small “pharmacy” footer */
+    .footer{
+      margin-top:28px;
+      font-size:.85rem;
+      color:#6b6b6b;
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
     }
+    .pill{
+      padding:6px 10px;
+      border:1px solid var(--edge);
+      border-radius:999px;
+      background:#fff;
+    }
+
+    /* Accessibility helpers */
+    a:focus{outline:2px dashed var(--accent); outline-offset:2px;}
   </style>
 </head>
 <body>
-  <div class="pad">
-    <h1>Doc Hassell’s Quick AI Learning Prescription<br><small>October 2025</small></h1>
+  <main class="pad" role="main" aria-label="Prescription content">
+    <div class="header" aria-label="Header">
+      <div class="brand">Doc Hassell</div>
+      <div class="meta">
+        Quick AI Learning Prescription<br/>
+        <time datetime="2025-10">Oct 2025</time>
+      </div>
+    </div>
 
-    <ul>
-      <li>
-        <a href="https://www.oneusefulthing.org/p/an-opinionated-guide-to-using-ai" target="_blank">
+    <h1>AI Learning – Starter Dose<br/><small>Effective immediately</small></h1>
+
+    <div class="label">Directions</div>
+    <ul class="list">
+      <li class="item">
+        <a href="https://www.oneusefulthing.org/p/an-opinionated-guide-to-using-ai" target="_blank" rel="noopener">
           An Opinionated Guide to Using AI Right Now
         </a>
-        — free webpage
+        — practical, frequently updated how-to from Ethan Mollick. <span class="note">(read first, 10–15 min)</span>
       </li>
-      <li>
-        <b>Co-Intelligence</b> by Ethan Mollick — easy to read (print or audiobook), available on Amazon
+
+      <li class="item">
+        <a href="https://www.penguinrandomhouse.com/books/741805/co-intelligence-by-ethan-mollick/" target="_blank" rel="noopener">
+          Co-Intelligence (book)
+        </a>
+        — clear, optimistic playbook for working with AI day-to-day. <span class="note">(audiobook/print)</span>
+        <div class="note">Tip: Pair with Mollick’s newsletter
+          <a href="https://substack.com/%40oneusefulthing/p-166124170" target="_blank" rel="noopener">One Useful Thing</a>
+          for ongoing tactics.</div>
       </li>
-      <li>
-        <b>AI Snake Oil</b> by Arvind Narayanan — easy to read:
-        <em>What Artificial Intelligence Can Do, What It Can't, and How to Tell the Difference</em>
+
+      <li class="item">
+        <a href="https://www.amazon.com/Snake-Oil-Artificial-Intelligence-Difference/dp/069124913X" target="_blank" rel="noopener">
+          AI Snake Oil (book)
+        </a>
+        — plain-spoken framework for spotting AI hype vs. real utility. <span class="note">(balanced, evidence-driven)</span>
+        <div class="note">Continue with their newsletter
+          <a href="https://www.normaltech.ai/" target="_blank" rel="noopener">AI as Normal Technology</a>
+          for timely analysis and policy context.</div>
       </li>
     </ul>
 
-    <div class="signature">— Dr. Hassell</div>
-  </div>
+    <div class="sig" aria-label="Signature">
+      <div class="line" aria-hidden="true"></div>
+      <div class="name">— Dr. Hassell</div>
+    </div>
+
+    <div class="footer" aria-label="Footer">
+      <div class="pill">Refills: ∞</div>
+      <div class="pill">Route: Read → Try → Reflect</div>
+      <div class="pill">Dosage: 20–30 min / day</div>
+    </div>
+  </main>
 </body>
 </html>
